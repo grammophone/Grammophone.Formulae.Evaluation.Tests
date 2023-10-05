@@ -29,29 +29,37 @@ namespace Grammophone.Formulae.Evaluation.Tests
 			Assert.AreEqual(A, 49455.64M);
 		}
 
-		//[TestMethod]
-		//public async Task Forbidden()
-		//{
-		//	var formulaDefinitions = CreateForbiddenDefinitions();
+		[TestMethod]
+		[ExpectedException(typeof(FormulaEvaluationException))]
+		public async Task Forbidden()
+		{
+			var formulaDefinitions = CreateForbiddenDefinitions();
 
-		//	var employeeContext = new EmployeeContext
-		//	{
-		//		PI = 960.00M,
-		//		PM = 12,
-		//		P = 52,
-		//		B = 0.0M
-		//	};
+			var employeeContext = new EmployeeContext
+			{
+				PI = 960.00M,
+				PM = 12,
+				P = 52,
+				B = 0.0M
+			};
 
-		//	var formulaEvaluator = new FormulaEvaluator<EmployeeContext>(formulaDefinitions);
+			string[] excludedNamespaces = new[]
+			{
+				"System.IO"
+			};
 
-		//	bool fileExists = await formulaEvaluator.EvaluateAsync<bool>(employeeContext, "fileExists");
+			var formulaEvaluatorBuilder = new FormulaEvaluatorBuilder(excludedNames: excludedNamespaces);
 
-		//	Assert.IsFalse(fileExists);
+			var formulaEvaluator = formulaEvaluatorBuilder.CreateEvaluator<EmployeeContext>(formulaDefinitions);
 
-		//	System.Reflection.MethodBase currentMethod = await formulaEvaluator.EvaluateAsync<System.Reflection.MethodBase>(employeeContext, "currentMethod");
+			bool fileExists = await formulaEvaluator.EvaluateAsync<bool>(employeeContext, "fileExists");
 
-		//	Assert.IsNotNull(currentMethod);
-		//}
+			Assert.IsFalse(fileExists);
+
+			System.Reflection.MethodBase? currentMethod = await formulaEvaluator.EvaluateAsync<System.Reflection.MethodBase>(employeeContext, "currentMethod");
+
+			Assert.IsNotNull(currentMethod);
+		}
 
 		[TestMethod]
 		public async Task AllowHostName()
