@@ -81,7 +81,7 @@ namespace Grammophone.Formulae.Evaluation.Tests
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(Microsoft.CodeAnalysis.Scripting.CompilationErrorException))]
+		[ExpectedException(typeof(FormulaCompilationErrorException))]
 		public async Task DenyHostName()
 		{
 			var formulaDefinitions = CreateHostNameDefinitions();
@@ -98,7 +98,7 @@ namespace Grammophone.Formulae.Evaluation.Tests
 
 			var formulaEvaluator = formulaEvaluatorBuilder.CreateEvaluator<EmployeeContext>(formulaDefinitions);
 
-			string? hostname = await formulaEvaluator.EvaluateAsync<string>(employeeContext, "hostName");
+			_ = await formulaEvaluator.EvaluateAsync<string>(employeeContext, "hostName");
 		}
 
 		#region Private methods
