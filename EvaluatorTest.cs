@@ -20,9 +20,9 @@ namespace Grammophone.Formulae.Evaluation.Tests
 				P = 52
 			};
 
-			var formulaEvaluatorBuilder = new FormulaEvaluatorBuilder();
+			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>();
 
-			var formulaEvaluator = formulaEvaluatorBuilder.CreateEvaluator<EmployeeContext>(formulaDefinitions);
+			var formulaEvaluator = formulaEvaluatorFactory.CreateEvaluator(formulaDefinitions);
 
 			decimal A = await formulaEvaluator.EvaluateAsync<decimal>(employeeContext, "A");
 
@@ -49,9 +49,9 @@ namespace Grammophone.Formulae.Evaluation.Tests
 				"System.Reflection"
 			};
 
-			var formulaEvaluatorBuilder = new FormulaEvaluatorBuilder(excludedNames: excludeNames);
+			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>(excludedNames: excludeNames);
 
-			var formulaEvaluator = formulaEvaluatorBuilder.CreateEvaluator<EmployeeContext>(formulaDefinitions);
+			var formulaEvaluator = formulaEvaluatorFactory.CreateEvaluator(formulaDefinitions);
 
 			bool fileExists = await formulaEvaluator.EvaluateAsync<bool>(employeeContext, "fileExists");
 
@@ -80,9 +80,9 @@ namespace Grammophone.Formulae.Evaluation.Tests
 				typeof(System.Net.Dns).Assembly
 			};
 
-			var formulaEvaluatorBuilder = new FormulaEvaluatorBuilder(references);
+			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>(references);
 
-			var formulaEvaluator = formulaEvaluatorBuilder.CreateEvaluator<EmployeeContext>(formulaDefinitions);
+			var formulaEvaluator = formulaEvaluatorFactory.CreateEvaluator(formulaDefinitions);
 
 			string? hostname = await formulaEvaluator.EvaluateAsync<string>(employeeContext, "hostName");
 
@@ -103,9 +103,9 @@ namespace Grammophone.Formulae.Evaluation.Tests
 				B = 0.0M
 			};
 
-			var formulaEvaluatorBuilder = new FormulaEvaluatorBuilder();
+			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>();
 
-			var formulaEvaluator = formulaEvaluatorBuilder.CreateEvaluator<EmployeeContext>(formulaDefinitions);
+			var formulaEvaluator = formulaEvaluatorFactory.CreateEvaluator(formulaDefinitions);
 
 			_ = await formulaEvaluator.EvaluateAsync<string>(employeeContext, "hostName");
 		}
