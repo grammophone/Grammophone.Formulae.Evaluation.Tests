@@ -22,11 +22,11 @@ namespace Grammophone.Formulae.Evaluation.Tests
 
 		public int ID { get; }
 
-		public Type DataType { get; init; }
+		public Type DataType { get; internal set; }
 
-		public string Identifier { get; init; }
+		public string Identifier { get; internal set; }
 
-		public string Expression { get; init; }
+		public string Expression { get; internal set; }
 
 		public string GetFormulaID() => this.ID.ToString();
 	}
