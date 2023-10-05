@@ -22,7 +22,7 @@ namespace Grammophone.Formulae.Evaluation.Tests
 
 			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>();
 
-			var formulaEvaluator = formulaEvaluatorFactory.CreateEvaluator(formulaDefinitions);
+			var formulaEvaluator = formulaEvaluatorFactory.GetEvaluator(formulaDefinitions);
 
 			decimal A = await formulaEvaluator.EvaluateAsync<decimal>(employeeContext, "A");
 
@@ -51,7 +51,7 @@ namespace Grammophone.Formulae.Evaluation.Tests
 
 			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>(excludedNames: excludeNames);
 
-			var formulaEvaluator = formulaEvaluatorFactory.CreateEvaluator(formulaDefinitions);
+			var formulaEvaluator = formulaEvaluatorFactory.GetEvaluator(formulaDefinitions);
 
 			bool fileExists = await formulaEvaluator.EvaluateAsync<bool>(employeeContext, "fileExists");
 
@@ -82,7 +82,7 @@ namespace Grammophone.Formulae.Evaluation.Tests
 
 			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>(references);
 
-			var formulaEvaluator = formulaEvaluatorFactory.CreateEvaluator(formulaDefinitions);
+			var formulaEvaluator = formulaEvaluatorFactory.GetEvaluator(formulaDefinitions);
 
 			string? hostname = await formulaEvaluator.EvaluateAsync<string>(employeeContext, "hostName");
 
@@ -105,7 +105,7 @@ namespace Grammophone.Formulae.Evaluation.Tests
 
 			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>();
 
-			var formulaEvaluator = formulaEvaluatorFactory.CreateEvaluator(formulaDefinitions);
+			var formulaEvaluator = formulaEvaluatorFactory.GetEvaluator(formulaDefinitions);
 
 			_ = await formulaEvaluator.EvaluateAsync<string>(employeeContext, "hostName");
 		}
