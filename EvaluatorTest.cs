@@ -45,7 +45,8 @@ namespace Grammophone.Formulae.Evaluation.Tests
 
 			string[] excludeNames = new[]
 			{
-				"System.IO"
+				"System.IO",
+				"System.Reflection"
 			};
 
 			var formulaEvaluatorBuilder = new FormulaEvaluatorBuilder(excludedNames: excludeNames);
