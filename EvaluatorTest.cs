@@ -30,7 +30,7 @@ namespace Grammophone.Formulae.Evaluation.Tests
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(FormulaEvaluationException))]
+		[ExpectedException(typeof(FormulaNameAccessException))]
 		public async Task Forbidden()
 		{
 			var formulaDefinitions = CreateForbiddenDefinitions();
