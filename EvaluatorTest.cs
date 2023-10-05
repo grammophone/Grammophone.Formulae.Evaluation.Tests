@@ -43,12 +43,12 @@ namespace Grammophone.Formulae.Evaluation.Tests
 				B = 0.0M
 			};
 
-			string[] excludedNamespaces = new[]
+			string[] excludeNames = new[]
 			{
 				"System.IO"
 			};
 
-			var formulaEvaluatorBuilder = new FormulaEvaluatorBuilder(excludedNames: excludedNamespaces);
+			var formulaEvaluatorBuilder = new FormulaEvaluatorBuilder(excludedNames: excludeNames);
 
 			var formulaEvaluator = formulaEvaluatorBuilder.CreateEvaluator<EmployeeContext>(formulaDefinitions);
 
