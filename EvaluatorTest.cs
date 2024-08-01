@@ -20,9 +20,9 @@ namespace Grammophone.Formulae.Evaluation.Tests
 				P = 52
 			};
 
-			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>();
+			var formulaFactory = new FormulaFactory<EmployeeContext>();
 
-			var formulaEvaluator = formulaEvaluatorFactory.GetEvaluator(formulaDefinitions);
+			var formulaEvaluator = formulaFactory.GetEvaluator(formulaDefinitions);
 
 			decimal A = await formulaEvaluator.EvaluateAsync<decimal>(employeeContext, "A");
 
@@ -49,9 +49,9 @@ namespace Grammophone.Formulae.Evaluation.Tests
 				"System.Reflection"
 			};
 
-			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>(excludedNames: excludeNames);
+			var formulaFactory = new FormulaFactory<EmployeeContext>(excludedNames: excludeNames);
 
-			var formulaEvaluator = formulaEvaluatorFactory.GetEvaluator(formulaDefinitions);
+			var formulaEvaluator = formulaFactory.GetEvaluator(formulaDefinitions);
 
 			bool fileExists = await formulaEvaluator.EvaluateAsync<bool>(employeeContext, "fileExists");
 
@@ -80,9 +80,9 @@ namespace Grammophone.Formulae.Evaluation.Tests
 				typeof(System.Net.Dns).Assembly
 			};
 
-			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>(references);
+			var formulaFactory = new FormulaFactory<EmployeeContext>(references);
 
-			var formulaEvaluator = formulaEvaluatorFactory.GetEvaluator(formulaDefinitions);
+			var formulaEvaluator = formulaFactory.GetEvaluator(formulaDefinitions);
 
 			string? hostname = await formulaEvaluator.EvaluateAsync<string>(employeeContext, "hostName");
 
@@ -103,9 +103,9 @@ namespace Grammophone.Formulae.Evaluation.Tests
 				B = 0.0M
 			};
 
-			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>();
+			var formulaFactory = new FormulaFactory<EmployeeContext>();
 
-			var formulaEvaluator = formulaEvaluatorFactory.GetEvaluator(formulaDefinitions);
+			var formulaEvaluator = formulaFactory.GetEvaluator(formulaDefinitions);
 
 			_ = await formulaEvaluator.EvaluateAsync<string>(employeeContext, "hostName");
 		}

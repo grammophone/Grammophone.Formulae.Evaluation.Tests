@@ -13,11 +13,11 @@ namespace Grammophone.Formulae.Evaluation.Tests
 		[TestMethod]
 		public void DiagnoseNoError()
 		{
-			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>();
+			var formulaFactory = new FormulaFactory<EmployeeContext>();
 
 			string expression = "2 + 2";
 
-			var parser = formulaEvaluatorFactory.GetFormulaParser();
+			var parser = formulaFactory.GetParser();
 
 			var diagnostics = parser.Validate(expression);
 
@@ -27,11 +27,11 @@ namespace Grammophone.Formulae.Evaluation.Tests
 		[TestMethod]
 		public void DiagnoseMissingParenthesis()
 		{
-			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>();
+			var formulaFactory = new FormulaFactory<EmployeeContext>();
 
 			string expression = "(2 + 2";
 
-			var parser = formulaEvaluatorFactory.GetFormulaParser();
+			var parser = formulaFactory.GetParser();
 
 			var diagnostics = parser.Validate(expression);
 
@@ -41,11 +41,11 @@ namespace Grammophone.Formulae.Evaluation.Tests
 		[TestMethod]
 		public void DiagnosValidVariables()
 		{
-			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>();
+			var formulaFactory = new FormulaFactory<EmployeeContext>();
 
 			string expression = "42 + B";
 
-			var parser = formulaEvaluatorFactory.GetFormulaParser();
+			var parser = formulaFactory.GetParser();
 
 			var diagnostics = parser.Validate(expression);
 
@@ -58,11 +58,11 @@ namespace Grammophone.Formulae.Evaluation.Tests
 		{
 			string[] excludedNames = new[] { "B" }; 
 
-			var formulaEvaluatorFactory = new FormulaEvaluatorFactory<EmployeeContext>(excludedNames: excludedNames);
+			var formulaFactory = new FormulaFactory<EmployeeContext>(excludedNames: excludedNames);
 
 			string expression = "42 + B";
 
-			var parser = formulaEvaluatorFactory.GetFormulaParser();
+			var parser = formulaFactory.GetParser();
 
 			var diagnostics = parser.Validate(expression);
 
